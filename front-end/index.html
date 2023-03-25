@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta name="description" content="Home page for Testing JavaSpringBoot" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parking Control</title>
+  </head>
+  <body>
+    <style>
+      form, label{
+        display: block;
+        font-size: 1.5rem;
+      }
+      label{
+        font-family: sans-serif;
+
+      }
+      input{
+        height: 40px;
+        width: 280px;
+        font-size: 1.2rem;
+        padding-left: 8px;
+        border-radius: 6px;
+        margin: 8px 0px;
+      }
+      .btn{
+        display: block;
+        padding: 8px 16px;
+        font-size: 1.2rem;
+        color: white;
+        background-color: midnightblue;
+        border-radius: 5px;
+        border: none;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    </style>
+    <form action="">
+      <label for="parkingSpotNumber">Spot Number</label>
+      <input type="text" name="parkingSpotNumber" id="parkingSpotNumber" />
+      <label for="licensePlateCar">Car Plate</label>
+      <input type="text" name="licensePlateCar" id="licensePlateCar" />
+      <label for="brandCar">Car Brand</label>
+      <input type="text" name="brandCar" id="brandCar" />
+      <label for="modelCar">Car Model</label>
+      <input type="text" name="modelCar" id="modelCar" />
+      <label for="colorCar">Car Color</label>
+      <input type="text" name="colorCar" id="colorCar" />
+      <label for="responsibleName">Spot Responsible Name</label>
+      <input type="text" name="responsibleName" id="responsibleName" />
+      <label for="apartment">Apartment</label>
+      <input type="text" name="apartment" id="apartment" />
+      <label for="block">Block</label>
+      <input type="text" name="block" id="block" />
+      <button type="button" class="btn"">Register</button>
+    </form>
+    <script>
+      const spotNumber = document.querySelector("#parkingSpotNumber");
+      const plate = document.querySelector("#licensePlateCar");
+      const brand = document.querySelector("#brandCar");
+      const model = document.querySelector("#modelCar");
+      const color = document.querySelector("#colorCar");
+      const responsibleName = document.querySelector("#responsibleName");
+      const apartment = document.querySelector("#apartment");
+      const block = document.querySelector("#block");
+      const btn = document.querySelector(".btn");
+      
+      async function submit(){
+        let allValues = {
+        parkingSpotNumber: spotNumber.value,
+        licensePlateCar: plate.value,
+        brandCar: brand.value,
+        modelCar: model.value,
+        colorCar: color.value,
+        responsibleName: responsibleName.value,
+        apartment: apartment.value,
+        block: block.value
+      };
+        const req = await fetch("http://localhost:8080/parking-spot", {
+          method: "POST",
+          headers: {
+      "Content-Type": "application/json",
+    },
+          body: JSON.stringify(allValues)
+        });
+        const res = await req.json();
+        console.log(res);
+      }
+      btn.addEventListener("click", submit);
+    </script>
+  </body>
+</html>
