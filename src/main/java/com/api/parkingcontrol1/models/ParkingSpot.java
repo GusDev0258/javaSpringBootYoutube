@@ -2,6 +2,7 @@ package com.api.parkingcontrol1.models;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "TB_PARKING_SPOT")
+@Data
 public class ParkingSpot implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -33,5 +35,6 @@ public class ParkingSpot implements Serializable {
     private String flat;
     @Column(nullable = false, length = 30)
     private String flatBlock;
+
 
 }
