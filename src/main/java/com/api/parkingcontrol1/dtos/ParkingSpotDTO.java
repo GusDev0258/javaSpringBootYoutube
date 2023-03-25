@@ -20,7 +20,7 @@ public class ParkingSpotDTO {
     @NotBlank
     private String responsibleName;
     @NotBlank
-    private String flat;
+    private String apartment;
     @NotBlank
-    private String flatBlock;
+    private String block;
 }
